@@ -1,6 +1,7 @@
 [submodule "lib/ansible/modules/core"]
 	path = lib/ansible/modules/core
-	url = https://github.com/ansible/ansible-modules-core
+	url = https://github.com/kindlyops/ansible-modules-core.git
+        branch = fix-ec2-group-mar-14
 [submodule "lib/ansible/modules/extras"]
 	path = lib/ansible/modules/extras
 	url = https://github.com/ansible/ansible-modules-extras
