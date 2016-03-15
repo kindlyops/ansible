@@ -91,7 +91,7 @@ class DataLoader():
             except YAMLError as yaml_exc:
                 self._handle_error(yaml_exc, file_name, show_content)
 
-            if 'sops' in new_data:
+            if new_data != None and 'sops' in new_data:
                 sops_key, new_data = sops.get_key(new_data)
                 new_data = sops.walk_and_decrypt(new_data, sops_key)
 
