@@ -25,6 +25,7 @@ import json
 import subprocess
 import tempfile
 from yaml import YAMLError
+import sops
 
 from ansible.compat.six import text_type, string_types
 
@@ -92,6 +93,10 @@ class DataLoader():
                 new_data = self._safe_load(in_data, file_name=file_name)
             except YAMLError as yaml_exc:
                 self._handle_error(yaml_exc, file_name, show_content)
+
+            if new_data != None and 'sops' in new_data:
+                sops_key, new_data = sops.get_key(new_data)
+                new_data = sops.walk_and_decrypt(new_data, sops_key)
 
             if isinstance(data, AnsibleUnicode):
                 new_data = AnsibleUnicode(new_data)
